@@ -1,0 +1,30 @@
+diff -ruN freeipmi-1.6.11/ipmi-sensors/ipmi-sensors-oem-intel.c freeipmi-1.6.11.new/ipmi-sensors/ipmi-sensors-oem-intel.c
+--- freeipmi-1.6.11/ipmi-sensors/ipmi-sensors-oem-intel.c	2022-08-31 07:17:04.000000000 +0200
++++ freeipmi-1.6.11.new/ipmi-sensors/ipmi-sensors-oem-intel.c	2023-02-06 16:36:12.866440828 +0100
+@@ -34,6 +34,7 @@
+ #include "ipmi-sensors-oem-intel.h"
+ #include "ipmi-sensors-oem-intel-s5500wb.h"
+ #include "ipmi-sensors-oem-intel-s2600jf.h"
++#include "ipmi-sensors-oem-intel-s2600wp.h"
+ #include "ipmi-sensors-oem-intel-quanta-qssc-s4r.h"
+ #include "ipmi-sensors-oem-intel-node-manager.h"
+ 
+diff -ruN freeipmi-1.6.11/libfreeipmi/sel/ipmi-sel-string-supermicro-common.h freeipmi-1.6.11.new/libfreeipmi/sel/ipmi-sel-string-supermicro-common.h
+--- freeipmi-1.6.11/libfreeipmi/sel/ipmi-sel-string-supermicro-common.h	2022-08-31 07:17:05.000000000 +0200
++++ freeipmi-1.6.11.new/libfreeipmi/sel/ipmi-sel-string-supermicro-common.h	2023-02-06 15:17:56.023720145 +0100
+@@ -39,4 +39,15 @@
+                                                                  unsigned int *wlen,
+                                                                  struct ipmi_sel_system_event_record_data *system_event_record_data);
+ 
++int sel_string_output_supermicro_dimm_event_data2_event_data3 (ipmi_sel_ctx_t ctx,
++                                                               struct ipmi_sel_entry *sel_entry,
++                                                               uint8_t sel_record_type,
++                                                               char *buf,
++                                                               unsigned int buflen,
++                                                               unsigned int flags,
++                                                               unsigned int *wlen,
++                                                               struct ipmi_sel_system_event_record_data *system_event_record_data,
++                                                               int *oem_rv);
++
++
+ #endif /* IPMI_SEL_STRING_SUPERMICRO_COMMON_H */
