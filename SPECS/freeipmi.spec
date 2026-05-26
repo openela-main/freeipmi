@@ -2,8 +2,8 @@
 # Copyright (c) 2003 FreeIPMI Core Team
 
 Name:             freeipmi
-Version:          1.6.14
-Release:          2%{?dist}
+Version:          1.6.17
+Release:          1%{?dist}
 Summary:          IPMI remote console and system management software
 License:          GPLv3+
 URL:              http://www.gnu.org/software/freeipmi/
@@ -11,10 +11,6 @@ Source0:          http://ftp.gnu.org/gnu/%{name}/%{name}-%{version}.tar.gz
 Source1:          bmc-watchdog.service
 Source2:          ipmidetectd.service
 Source3:          ipmiseld.service
-
-# https://github.com/chu11/freeipmi-mirror/commit/41d0d70f09b4becfceef0517543cbf335c0e927a
-Patch1:           0001-ipmi-config-fix-incorrect-output-of-IPv6_Dynamic_Add.patch
-
 BuildRequires:    libgcrypt-devel texinfo systemd 
 %{?systemd_requires}
 BuildRequires:    gcc
@@ -357,6 +353,9 @@ fi
 %dir %{_localstatedir}/cache/ipmiseld
 
 %changelog
+* Fri Apr 17 2026 Pavel Cahyna <pcahyna@redhat.com> - 1.6.17-1
+- Update to 1.6.17, fixes CVE-2026-33554
+
 * Wed Feb 21 2024 Pavel Cahyna <pcahyna@redhat.com> - 1.6.14-2
 - Apply upstream patch 41d0d70f
   ipmi-config: fix incorrect output of IPv6_Dynamic_Address_Source_Type
