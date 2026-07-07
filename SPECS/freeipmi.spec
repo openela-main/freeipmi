@@ -2,7 +2,7 @@
 # Copyright (c) 2003 FreeIPMI Core Team
 
 Name:             freeipmi
-Version:          1.6.17
+Version:          1.6.18
 Release:          1%{?dist}
 Summary:          IPMI remote console and system management software
 License:          GPLv3+
@@ -353,6 +353,9 @@ fi
 %dir %{_localstatedir}/cache/ipmiseld
 
 %changelog
+* Wed Jun 17 2026 Pavel Cahyna <pcahyna@redhat.com> - 1.6.18-1
+- Update to 1.6.18, fixes CVE-2026-50031
+
 * Fri Apr 17 2026 Pavel Cahyna <pcahyna@redhat.com> - 1.6.17-1
 - Update to 1.6.17, fixes CVE-2026-33554
 
