@@ -2,12 +2,12 @@
 # Copyright (c) 2003 FreeIPMI Core Team
 
 Name:             freeipmi
-Version:          1.6.18
+Version:          1.6.20
 Release:          1%{?dist}
 Summary:          IPMI remote console and system management software
 License:          GPLv3+
-URL:              http://www.gnu.org/software/freeipmi/
-Source0:          http://ftp.gnu.org/gnu/%{name}/%{name}-%{version}.tar.gz
+URL:              https://www.gnu.org/software/freeipmi/
+Source0:          https://ftp.gnu.org/gnu/%{name}/%{name}-%{version}.tar.gz
 Source1:          bmc-watchdog.service
 Source2:          ipmidetectd.service
 Source3:          ipmiseld.service
@@ -342,6 +342,14 @@ rm -frv %{buildroot}%{_initrddir} %{buildroot}%{_sysconfdir}/init.d
 %dir %{_localstatedir}/cache/ipmiseld
 
 %changelog
+* Fri Oct  9 2026 Pavel Cahyna <pcahyna@redhat.com> - 1.6.20-1
+- Update to 1.6.20, fixes buffer overflows in ipmidetect and ipmi-oem fujitsu
+  CVE number assignment pending.
+
+* Wed Sep 16 2026 Pavel Cahyna <pcahyna@redhat.com> - 1.6.19-1
+- Update to 1.6.19, fixes CVE-2026-85504, CVE-2026-85505,
+  CVE-2026-85506, CVE-2026-85507, CVE-2026-85508, CVE-2026-85509
+
 * Wed Jun 17 2026 Pavel Cahyna <pcahyna@redhat.com> - 1.6.18-1
 - Update to 1.6.18, fixes CVE-2026-50031
 
