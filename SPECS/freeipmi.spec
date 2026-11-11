@@ -11,6 +11,8 @@ Source0:          https://ftp.gnu.org/gnu/%{name}/%{name}-%{version}.tar.gz
 Source1:          bmc-watchdog.service
 Source2:          ipmidetectd.service
 Source3:          ipmiseld.service
+Source4:          freeipmi.tmpfiles.conf
+Source5:          freeipmi-ipmiseld.tmpfiles.conf
 BuildRequires:    libgcrypt-devel texinfo systemd 
 %{?systemd_requires}
 BuildRequires:    gcc
@@ -71,6 +73,10 @@ find %{buildroot} -name '*.la' -delete -print
 # Install systemd units
 install -m755 -d %{buildroot}%{_unitdir}
 install -pm644 %SOURCE1 %SOURCE2 %SOURCE3 %{buildroot}%{_unitdir}/
+
+# Install tmpfiles configs
+install -m0644 -D %{SOURCE4} %{buildroot}%{_tmpfilesdir}/freeipmi.conf
+install -m0644 -D %{SOURCE5} %{buildroot}%{_tmpfilesdir}/freeipmi-ipmiseld.conf
 
 # Remove initscripts
 rm -frv %{buildroot}%{_initrddir} %{buildroot}%{_sysconfdir}/init.d
@@ -257,6 +263,7 @@ rm -frv %{buildroot}%{_initrddir} %{buildroot}%{_sysconfdir}/init.d
 %{_mandir}/man5/libipmiconsole.conf.5*
 %{_mandir}/man7/freeipmi.7*
 %dir %{_localstatedir}/cache/ipmimonitoringsdrcache
+%{_tmpfilesdir}/freeipmi.conf
 
 %files devel
 %dir %{_datadir}/doc/%{name}/contrib/libipmimonitoring
@@ -340,6 +347,7 @@ rm -frv %{buildroot}%{_initrddir} %{buildroot}%{_sysconfdir}/init.d
 %{_mandir}/man5/ipmiseld.conf.5*
 %{_mandir}/man8/ipmiseld.8*
 %dir %{_localstatedir}/cache/ipmiseld
+%{_tmpfilesdir}/freeipmi-ipmiseld.conf
 
 %changelog
 * Fri Oct  9 2026 Pavel Cahyna <pcahyna@redhat.com> - 1.6.20-1
@@ -349,6 +357,9 @@ rm -frv %{buildroot}%{_initrddir} %{buildroot}%{_sysconfdir}/init.d
 * Wed Sep 16 2026 Pavel Cahyna <pcahyna@redhat.com> - 1.6.19-1
 - Update to 1.6.19, fixes CVE-2026-85504, CVE-2026-85505,
   CVE-2026-85506, CVE-2026-85507, CVE-2026-85508, CVE-2026-85509
+
+* Wed Jul 08 2026 Lukáš Zaoral <lzaoral@redhat.com> - 1.6.18-2
+- add tmpfiles configs for image mode (RHEL-182169)
 
 * Wed Jun 17 2026 Pavel Cahyna <pcahyna@redhat.com> - 1.6.18-1
 - Update to 1.6.18, fixes CVE-2026-50031
